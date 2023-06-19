@@ -1,4 +1,4 @@
-import { v4 as uuid } from "uuid";
+import { UniqueEntityId } from "../../../shared/domain/unique-entity-id.vo";
 
 export type CategoryProps = {
   name: string;
@@ -8,10 +8,10 @@ export type CategoryProps = {
 };
 
 export class Category {
-  public readonly id: string;
+  public readonly id: UniqueEntityId;
 
-  constructor(public props: CategoryProps, id?: string) {
-    this.id = id ?? uuid();
+  constructor(public readonly props: CategoryProps, id?: UniqueEntityId) {
+    this.id = id ?? new UniqueEntityId();
     this.description = this.props.description ?? null;
     this.props.isActive = this.props.isActive ?? true;
     this.props.createdAt = this.props.createdAt ?? new Date();
