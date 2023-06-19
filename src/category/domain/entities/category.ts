@@ -8,18 +8,30 @@ export type CategoryProps = {
 };
 
 export class Category {
-  constructor(public props: CategoryProps) {}
+  constructor(public props: CategoryProps) {
+    this.description = this.props.description ?? null;
+    this.props.isActive = this.props.isActive ?? true;
+    this.props.createdAt = this.props.createdAt ?? new Date();
+  }
 
   get name(): string {
     return this.props.name;
   }
 
-  get description(): string | undefined {
+  get description(): string {
     return this.props.description;
   }
 
-  get isActive(): boolean | undefined {
+  private set description(value: string) {
+    this.props.description = value ?? null;
+  }
+
+  get isActive(): boolean {
     return this.props.isActive;
+  }
+
+  private set isActive(value: boolean) {
+    this.props.isActive = value ?? true;
   }
 
   get createdAt(): Date | undefined {
